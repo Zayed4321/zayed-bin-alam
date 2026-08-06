@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   icons: {
     icon: "/icon.svg",
   },
+  other: {
+    "p:domain_verify": "09b6a7c594f43822ee0621815b412a43",
+  },
   openGraph: {
     title: "Zayed Bin Alam — Performance Marketing Specialist",
     description: "Helping wellness brands & apps scale revenue with data-driven Meta Ads, Google Ads, ChatGPT Ads, and server-side tracking.",
