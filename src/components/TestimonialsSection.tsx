@@ -1,0 +1,178 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+
+interface Testimonial {
+  quote: string;
+  author: string;
+  role: string;
+  rating: number;
+  tags: string[];
+}
+
+export function TestimonialsSection() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const testimonials: Testimonial[] = [
+    {
+      quote:
+        "This is my 2nd time hiring Zayed. He's great. This time he bailed me out on something urgent and completed it in less than 24 hours. He's my go-to for Meta Ads & GTM tracking.",
+      author: "Dany",
+      role: "Meta Ads & GTM Setup",
+      rating: 5,
+      tags: ["Reliable", "Meta Tag Optimization", "Pixel Audit"],
+    },
+    {
+      quote:
+        "Zayed did an excellent job optimizing two ad campaigns for me, great quality and very affordable. I was so happy with his work that I referred him to a friend as well. Highly recommend him, 10/10!",
+      author: "Kim Cordle",
+      role: "Google Ads & Analytics Strategy",
+      rating: 5,
+      tags: ["Committed to Quality", "Solution Oriented", "Clear Communicator"],
+    },
+    {
+      quote:
+        "Zayed completed all tasks with excellence and on schedule. He was very available; speaks English fluently; was communicative; and nice to work with. He took initiative to make recommendations beyond my requests. I would definitely hire him again.",
+      author: "Debra Mignola",
+      role: "Full Funnel & CAPI Audit",
+      rating: 5,
+      tags: ["Reliable", "Collaborative", "Solution Oriented"],
+    },
+  ];
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+  };
+
+  return (
+    <section id="testimonials" className="py-20 lg:py-28 bg-brand-white border-t border-brand-sage/20 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 space-y-12">
+        
+        {/* TOP SECTION HEADER WITH FULL-WIDTH BORDER */}
+        <div className="border-b border-brand-sage/30 pb-8 space-y-3">
+          <h2 className="font-sans text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-forest tracking-tight">
+            Clients feedback
+          </h2>
+          <p className="text-brand-slate text-sm sm:text-base font-medium max-w-xl">
+            Real feedback from client campaigns across Meta Ads, Google Ads, and GTM Server-Side tracking.
+          </p>
+        </div>
+
+        {/* FEATURED LAYOUT: SINGLE HAPPY MAN IMAGE ON LEFT & SWIPING FEEDBACK WITH RIGHT PEEK ON RIGHT */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          {/* LEFT COLUMN: SINGLE FIXED PORTRAIT IMAGE */}
+          <div className="lg:col-span-4 flex justify-center">
+            <div className="relative w-full max-w-[340px] aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border border-brand-sage/30">
+              <Image
+                src="/Happy_man.jpg"
+                alt="Happy Client Feedback"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+
+          {/* RIGHT COLUMN: SWIPING FEEDBACK TEXT TRACK WITH NEXT FEEDBACK PEEK */}
+          <div className="lg:col-span-8 flex flex-col justify-between space-y-6 overflow-hidden">
+            
+            <div className="relative overflow-hidden py-2">
+              <div
+                className="flex items-start gap-8 transition-transform duration-500 ease-out"
+                style={{ transform: `translateX(-${currentIndex * 85}%)` }}
+              >
+                {testimonials.map((item, idx) => {
+                  const isActive = idx === currentIndex;
+                  return (
+                    <div
+                      key={idx}
+                      onClick={() => setCurrentIndex(idx)}
+                      className={`w-[85%] shrink-0 space-y-5 transition-all duration-500 cursor-pointer ${
+                        isActive
+                          ? "opacity-100 scale-100"
+                          : "opacity-40 blur-[0.5px] scale-[0.98] hover:opacity-70"
+                      }`}
+                    >
+                      {/* Quote Mark Icon */}
+                      <div className="text-brand-forest opacity-80">
+                        <svg className="w-10 h-10 fill-current text-brand-forest" viewBox="0 0 24 24">
+                          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                        </svg>
+                      </div>
+
+                      {/* Review Quote Text */}
+                      <p className="font-sans text-xl sm:text-2xl font-bold text-brand-forest leading-relaxed">
+                        {item.quote}
+                      </p>
+
+                      {/* Rating & Endorsement Tags */}
+                      <div className="flex flex-wrap items-center gap-2 pt-2">
+                        <div className="flex items-center gap-1 text-amber-500 mr-2">
+                          {[...Array(item.rating)].map((_, i) => (
+                            <Star key={i} className="w-4 h-4 fill-current" />
+                          ))}
+                        </div>
+                        {item.tags.map((tag, i) => (
+                          <span
+                            key={i}
+                            className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-brand-light-sage text-brand-forest border border-brand-sage/30"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Author Info */}
+                      <div className="pt-4 border-t border-brand-sage/20">
+                        <h4 className="font-sans text-base sm:text-lg font-extrabold text-brand-forest">
+                          {item.author}
+                        </h4>
+                        <p className="text-xs sm:text-sm font-semibold text-brand-emerald">
+                          {item.role}
+                        </p>
+                      </div>
+
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* NAVIGATION CONTROLS */}
+            <div className="flex items-center justify-between pt-4 border-t border-brand-sage/20">
+              <div className="text-xs font-bold text-brand-slate uppercase tracking-widest">
+                0{currentIndex + 1} / 0{testimonials.length}
+              </div>
+
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={handlePrev}
+                  className="w-11 h-11 rounded-full border border-brand-sage/40 bg-brand-white text-brand-forest flex items-center justify-center hover:bg-brand-forest hover:text-brand-white transition-all duration-300 shadow-xs active:scale-95"
+                  aria-label="Previous Testimonial"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="w-11 h-11 rounded-full border border-brand-sage/40 bg-brand-white text-brand-forest flex items-center justify-center hover:bg-brand-forest hover:text-brand-white transition-all duration-300 shadow-xs active:scale-95"
+                  aria-label="Next Testimonial"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  );
+}
