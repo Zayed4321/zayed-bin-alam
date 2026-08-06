@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface Testimonial {
   quote: string;
@@ -50,6 +51,21 @@ export function TestimonialsSection() {
     setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
   };
 
+  const handleDragEnd = (_: any, info: { offset: { x: number }; velocity: { x: number } }) => {
+    const swipeThreshold = 30;
+    const velocityThreshold = 150;
+
+    if (info.offset.x < -swipeThreshold || info.velocity.x < -velocityThreshold) {
+      if (currentIndex < testimonials.length - 1) {
+        setCurrentIndex((prev) => prev + 1);
+      }
+    } else if (info.offset.x > swipeThreshold || info.velocity.x > velocityThreshold) {
+      if (currentIndex > 0) {
+        setCurrentIndex((prev) => prev - 1);
+      }
+    }
+  };
+
   return (
     <section id="testimonials" className="py-20 lg:py-28 bg-brand-white border-t border-brand-sage/20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 space-y-12">
@@ -60,11 +76,11 @@ export function TestimonialsSection() {
             Clients feedback
           </h2>
           <p className="text-brand-slate text-sm sm:text-base font-medium max-w-xl">
-            Real feedback from client campaigns across Meta Ads, Google Ads, and GTM Server-Side tracking.
+            Real feedback from client campaigns across Meta Ads, Google Ads, and GTM Server-Side tracking. Swipe left or right to view all.
           </p>
         </div>
 
-        {/* FEATURED LAYOUT: SINGLE HAPPY MAN IMAGE ON LEFT & SWIPING FEEDBACK WITH RIGHT PEEK ON RIGHT */}
+        {/* FEATURED LAYOUT: SINGLE HAPPY MAN IMAGE ON LEFT & SWIPABLE FEEDBACK ON RIGHT */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
           {/* LEFT COLUMN: SINGLE FIXED PORTRAIT IMAGE */}
@@ -79,13 +95,18 @@ export function TestimonialsSection() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: SWIPING FEEDBACK TEXT TRACK WITH NEXT FEEDBACK PEEK */}
+          {/* RIGHT COLUMN: BUTTERY SMOOTH SWIPABLE FEEDBACK TRACK */}
           <div className="lg:col-span-8 flex flex-col justify-between space-y-6 overflow-hidden">
             
-            <div className="relative overflow-hidden py-2">
-              <div
-                className="flex items-start gap-8 transition-transform duration-500 ease-out"
-                style={{ transform: `translateX(-${currentIndex * 85}%)` }}
+            <div className="relative overflow-hidden py-2 select-none touch-pan-y">
+              <motion.div
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.15}
+                onDragEnd={handleDragEnd}
+                animate={{ x: `-${currentIndex * 86}%` }}
+                transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+                className="flex items-start gap-6 cursor-grab active:cursor-grabbing will-change-transform"
               >
                 {testimonials.map((item, idx) => {
                   const isActive = idx === currentIndex;
@@ -93,10 +114,10 @@ export function TestimonialsSection() {
                     <div
                       key={idx}
                       onClick={() => setCurrentIndex(idx)}
-                      className={`w-[85%] shrink-0 space-y-5 transition-all duration-500 cursor-pointer ${
+                      className={`w-[85%] shrink-0 space-y-5 transition-opacity duration-300 ${
                         isActive
-                          ? "opacity-100 scale-100"
-                          : "opacity-40 blur-[0.5px] scale-[0.98] hover:opacity-70"
+                          ? "opacity-100"
+                          : "opacity-40 hover:opacity-70"
                       }`}
                     >
                       {/* Quote Mark Icon */}
@@ -107,12 +128,12 @@ export function TestimonialsSection() {
                       </div>
 
                       {/* Review Quote Text */}
-                      <p className="font-sans text-xl sm:text-2xl font-bold text-brand-forest leading-relaxed">
+                      <p className="font-sans text-xl sm:text-2xl font-bold text-brand-forest leading-relaxed select-none">
                         {item.quote}
                       </p>
 
                       {/* Rating & Endorsement Tags */}
-                      <div className="flex flex-wrap items-center gap-2 pt-2">
+                      <div className="flex flex-wrap items-center gap-2 pt-2 select-none">
                         <div className="flex items-center gap-1 text-amber-500 mr-2">
                           {[...Array(item.rating)].map((_, i) => (
                             <Star key={i} className="w-4 h-4 fill-current" />
@@ -129,7 +150,7 @@ export function TestimonialsSection() {
                       </div>
 
                       {/* Author Info */}
-                      <div className="pt-4 border-t border-brand-sage/20">
+                      <div className="pt-4 border-t border-brand-sage/20 select-none">
                         <h4 className="font-sans text-base sm:text-lg font-extrabold text-brand-forest">
                           {item.author}
                         </h4>
@@ -141,7 +162,7 @@ export function TestimonialsSection() {
                     </div>
                   );
                 })}
-              </div>
+              </motion.div>
             </div>
 
             {/* NAVIGATION CONTROLS */}

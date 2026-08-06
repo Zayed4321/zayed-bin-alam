@@ -2,13 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Activity, ShieldCheck } from "lucide-react";
+import { ArrowRight, Activity, ShieldCheck, CheckCircle2 } from "lucide-react";
 
 export function ServicesSection() {
   const deliverables = [
-    "ICP-to-prompt intent & opportunity mapping",
-    "Competitor AI placement monitoring & weekly optimization",
-    "Conversational ad copy & high-converting lead funnels",
+    "Target exact buyer questions & prompts inside ChatGPT",
+    "Weekly competitor AI ad tracking & placement optimization",
+    "Conversational ad copy that converts AI searchers into paying clients",
   ];
 
   return (
@@ -48,12 +48,14 @@ export function ServicesSection() {
                   Be the first recommendation when buyers ask ChatGPT for wellness &amp; healthcare solutions. We map buyer prompt intent and engineer high-converting conversational ad placements.
                 </p>
 
-                {/* Bullet Points */}
-                <div className="space-y-3 pt-2">
+                {/* Clear & Simple Bullet Points */}
+                <div className="space-y-3.5 pt-2">
                   {deliverables.map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-3 text-sm sm:text-base text-brand-white font-medium">
-                      <span className="text-brand-sage font-bold">—</span>
-                      <span>{item}</span>
+                    <div key={idx} className="flex items-start gap-3 text-sm sm:text-base text-brand-white font-medium">
+                      <div className="w-5 h-5 rounded-full bg-brand-emerald/40 text-brand-sage flex items-center justify-center shrink-0 mt-0.5 border border-brand-sage/30">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-brand-sage" />
+                      </div>
+                      <span className="leading-snug">{item}</span>
                     </div>
                   ))}
                 </div>
@@ -140,7 +142,7 @@ export function ServicesSection() {
               </div>
 
               <div className="pt-6 relative z-10">
-                <Link href="#contact" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-forest group-hover:text-brand-emerald transition-colors">
+                <Link href="/hire-me" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-forest group-hover:text-brand-emerald transition-colors">
                   <span>Explore Meta Campaigns</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>
@@ -167,7 +169,7 @@ export function ServicesSection() {
               </div>
 
               <div className="pt-6">
-                <Link href="#contact" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-forest group-hover:text-brand-emerald transition-colors">
+                <Link href="/hire-me" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-forest group-hover:text-brand-emerald transition-colors">
                   <span>Explore Google Ads</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>
@@ -194,7 +196,7 @@ export function ServicesSection() {
               </div>
 
               <div className="pt-6">
-                <Link href="#contact" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-forest group-hover:text-brand-emerald transition-colors">
+                <Link href="/hire-me" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-forest group-hover:text-brand-emerald transition-colors">
                   <span>Explore LinkedIn Ads</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>

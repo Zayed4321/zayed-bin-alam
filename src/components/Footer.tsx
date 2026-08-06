@@ -84,9 +84,9 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Right: Stacked Pill Social Cards (Including WhatsApp) */}
-          <div className="md:col-span-6 flex flex-col items-end space-y-3">
-            <div className="w-full max-w-xs space-y-3">
+          {/* Right: Stacked Pill Social Cards (Centered on Mobile, Right-Aligned on Desktop) */}
+          <div className="md:col-span-6 flex flex-col items-center md:items-end space-y-3">
+            <div className="w-full max-w-xs mx-auto md:mx-0 space-y-3">
               {socialLinks.map((item) => (
                 <a
                   key={item.name}

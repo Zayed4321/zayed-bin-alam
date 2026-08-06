@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import Cal, { getCalApi } from "@calcom/embed-react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Mail } from "lucide-react";
 
 export default function HireMePage() {
   useEffect(() => {
@@ -71,13 +71,23 @@ export default function HireMePage() {
             </div>
           </Link>
 
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-brand-forest/30 text-brand-forest font-bold text-xs uppercase tracking-wider hover:bg-brand-forest hover:text-white transition-all shadow-xs"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back To Home</span>
-          </Link>
+          <div className="flex items-center gap-4">
+            <a
+              href="mailto:hi@zayedalam.com"
+              className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-white border border-brand-sage/40 text-brand-forest font-bold text-xs hover:bg-brand-forest hover:text-white transition-all shadow-2xs"
+            >
+              <Mail className="w-3.5 h-3.5 text-brand-emerald" />
+              <span>hi@zayedalam.com</span>
+            </a>
+
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-brand-forest/30 text-brand-forest font-bold text-xs uppercase tracking-wider hover:bg-brand-forest hover:text-white transition-all shadow-xs"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Back To Home</span>
+            </Link>
+          </div>
         </div>
       </header>
 
@@ -96,15 +106,15 @@ export default function HireMePage() {
           </div>
         </div>
 
-        {/* Social Media Links Section */}
+        {/* Social Media & Direct Email Section */}
         <div className="bg-brand-forest text-brand-white rounded-3xl p-8 sm:p-12 border border-brand-emerald/40 shadow-xl space-y-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div>
+            <div className="space-y-2">
               <h2 className="font-sans text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                Connect Directly On Socials
+                Connect Directly On Socials &amp; Email
               </h2>
-              <p className="text-brand-light-sage text-sm mt-1 font-normal">
-                Follow or message Zayed across all active social platforms.
+              <p className="text-brand-light-sage text-sm font-normal">
+                Direct Email: <a href="mailto:hi@zayedalam.com" className="text-white font-bold underline hover:text-emerald-300">hi@zayedalam.com</a>
               </p>
             </div>
 

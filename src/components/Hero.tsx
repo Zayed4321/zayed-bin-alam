@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/Button";
-import { Award, CheckCircle2, TrendingUp, Users, ExternalLink, ArrowRight } from "lucide-react";
+import { Award, CheckCircle2, TrendingUp, Users, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function Hero() {
@@ -15,7 +15,7 @@ export function Hero() {
   ];
 
   return (
-    <section className="relative pt-32 sm:pt-36 lg:pt-40 pb-16 lg:pb-24 bg-brand-cream overflow-hidden">
+    <section className="relative pt-20 sm:pt-28 lg:pt-36 pb-12 lg:pb-24 bg-brand-cream overflow-hidden">
       {/* Background Soft Glow */}
       <div className="absolute top-12 left-1/3 w-[800px] h-[500px] bg-brand-light-sage/40 rounded-full blur-3xl -z-10 pointer-events-none" />
 
@@ -34,24 +34,24 @@ export function Hero() {
         </div>
 
         {/* 3. TWO-COLUMN CONTENT GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start relative">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start relative">
           
           {/* LEFT COLUMN: Bio & CTAs starting cleanly below the giant name */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-5 flex flex-col space-y-6 pt-6 sm:pt-10 lg:pt-16 z-20"
+            className="lg:col-span-5 flex flex-col pt-3 sm:pt-6 lg:pt-16 z-20"
           >
-            {/* LINKEDIN HEADLINE DETAILS */}
-            <div className="border-l-4 border-brand-emerald pl-4 py-1">
-              <p className="text-brand-charcoal text-lg sm:text-xl font-medium leading-relaxed">
-                Helping Wellness Brands &amp; Apps Scale Revenue with Data-Driven Meta &amp; Google Ads <span className="text-brand-emerald font-semibold">|</span> Performance Marketing Specialist <span className="text-brand-emerald font-semibold">|</span> Co-Founder, Akhirah Lab
+            {/* LINKEDIN HEADLINE DETAILS WITH SLASH / SEPARATORS */}
+            <div className="border-l-4 border-brand-emerald pl-4 py-1 mb-5">
+              <p className="text-brand-charcoal text-base sm:text-xl font-medium leading-relaxed">
+                Helping Wellness Brands &amp; Apps Scale Revenue with Data-Driven Meta &amp; Google Ads <span className="text-brand-emerald font-semibold">/</span> Performance Marketing Specialist <span className="text-brand-emerald font-semibold">/</span> Co-Founder, Akhirah Lab
               </p>
             </div>
 
-            {/* Action Buttons */}
-            <div className="pt-2 flex flex-wrap items-center gap-4">
+            {/* Action Buttons with Symmetrical Top & Bottom Margins */}
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 my-5 sm:my-0">
               <Link href="/hire-me">
                 <Button variant="primary" size="lg">
                   Let&apos;s Work Together
@@ -65,12 +65,12 @@ export function Hero() {
             </div>
           </motion.div>
 
-          {/* RIGHT COLUMN: Image overlapping under the right side of the giant name with soft top gradient for contrast */}
+          {/* RIGHT COLUMN: Image overlapping under the right side of the giant name */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="lg:col-span-7 flex justify-center lg:justify-end -mt-6 sm:-mt-10 lg:-mt-20 z-10"
+            className="lg:col-span-7 flex justify-center lg:justify-end mt-2 sm:-mt-10 lg:-mt-20 z-10"
           >
             <div className="relative w-full max-w-xl lg:max-w-2xl group">
               {/* Outer Container with overflow-hidden */}
