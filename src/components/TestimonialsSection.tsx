@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Testimonial {
   quote: string;
@@ -11,6 +11,7 @@ interface Testimonial {
   role: string;
   rating: number;
   tags: string[];
+  image: string;
 }
 
 export function TestimonialsSection() {
@@ -24,6 +25,7 @@ export function TestimonialsSection() {
       role: "Meta Ads & GTM Setup",
       rating: 5,
       tags: ["Reliable", "Meta Tag Optimization", "Pixel Audit"],
+      image: "/Crave-Portfolio.png",
     },
     {
       quote:
@@ -32,6 +34,7 @@ export function TestimonialsSection() {
       role: "Google Ads & Analytics Strategy",
       rating: 5,
       tags: ["Committed to Quality", "Solution Oriented", "Clear Communicator"],
+      image: "/Happy_man.jpg",
     },
     {
       quote:
@@ -40,6 +43,7 @@ export function TestimonialsSection() {
       role: "Full Funnel & CAPI Audit",
       rating: 5,
       tags: ["Reliable", "Collaborative", "Solution Oriented"],
+      image: "/Happy_man.jpg",
     },
   ];
 
@@ -80,18 +84,29 @@ export function TestimonialsSection() {
           </p>
         </div>
 
-        {/* FEATURED LAYOUT: SINGLE HAPPY MAN IMAGE ON LEFT & SWIPABLE FEEDBACK ON RIGHT */}
+        {/* FEATURED LAYOUT: DYNAMIC PORTRAIT / PORTFOLIO IMAGE ON LEFT & SWIPABLE FEEDBACK ON RIGHT */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
-          {/* LEFT COLUMN: SINGLE FIXED PORTRAIT IMAGE */}
+          {/* LEFT COLUMN: FEATURED TESTIMONIAL PORTFOLIO IMAGE */}
           <div className="lg:col-span-4 flex justify-center">
-            <div className="relative w-full max-w-[340px] aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border border-brand-sage/30">
-              <Image
-                src="/Happy_man.jpg"
-                alt="Happy Client Feedback"
-                fill
-                className="object-cover"
-              />
+            <div className="relative w-full max-w-[340px] aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border border-brand-sage/30 bg-brand-cream">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={testimonials[currentIndex].image}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.35 }}
+                  className="relative w-full h-full"
+                >
+                  <Image
+                    src={testimonials[currentIndex].image}
+                    alt={`${testimonials[currentIndex].author} Portfolio Showcase`}
+                    fill
+                    className="object-cover object-top rounded-3xl"
+                  />
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
 
