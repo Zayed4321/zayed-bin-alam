@@ -82,21 +82,22 @@ export default function CaseStudyPage({ params }: { params: Promise<{ id: string
           </p>
         </div>
 
-        {/* Featured Showcase Image (Click to Zoom) */}
+        {/* Featured Showcase Image (Click to Zoom) - Scaled with Natural Image Ratio */}
         {(study.detailImage || study.featuredImage) && (
           <div
             onClick={() => setActiveZoomImage({ src: (study.detailImage || study.featuredImage)!, title: study.title })}
-            className="relative w-full h-[320px] sm:h-[480px] rounded-3xl overflow-hidden shadow-2xl border border-brand-sage/40 bg-brand-white cursor-zoom-in group"
+            className="relative w-full rounded-2xl overflow-hidden shadow-xl border border-brand-sage/30 cursor-zoom-in group bg-[#0A2E22]"
           >
             <Image
               src={study.detailImage || study.featuredImage!}
               alt={study.title}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              width={1200}
+              height={675}
+              className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.02]"
               priority
             />
-            <div className="absolute inset-0 bg-brand-forest/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 text-white font-bold text-sm uppercase tracking-wider backdrop-blur-[2px]">
-              <ZoomIn className="w-6 h-6 text-brand-sage" />
+            <div className="absolute inset-0 bg-brand-forest/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 text-white font-bold text-xs sm:text-sm uppercase tracking-wider backdrop-blur-[2px]">
+              <ZoomIn className="w-5 h-5 text-brand-sage" />
               <span>Click to Enlarge / Zoom</span>
             </div>
           </div>
@@ -165,12 +166,13 @@ export default function CaseStudyPage({ params }: { params: Promise<{ id: string
                         </div>
                       </div>
 
-                      <div className="relative w-full h-[280px] sm:h-[450px] p-2 bg-[#0A2E22]">
+                      <div className="relative w-full p-2 bg-[#0A2E22]">
                         <Image
                           src={st.image}
                           alt={st.title}
-                          fill
-                          className="object-contain p-2 transition-transform duration-500 group-hover:scale-[1.02]"
+                          width={1200}
+                          height={675}
+                          className="w-full h-auto object-contain p-2 transition-transform duration-500 group-hover:scale-[1.01]"
                         />
                       </div>
                     </div>

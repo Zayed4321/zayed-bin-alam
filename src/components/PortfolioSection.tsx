@@ -67,18 +67,19 @@ export function PortfolioSection() {
                   </div>
                 </div>
 
-                {/* RIGHT FEATURED VISUAL CARD (~50%) */}
+                {/* RIGHT FEATURED VISUAL CARD (~50%) - NATURAL RESPONSIVE SCALING */}
                 <div className="lg:col-span-6 flex justify-end">
                   {study.featuredImage ? (
                     <Link
                       href={`/work/${study.slug}`}
-                      className="w-full lg:w-[480px] h-[300px] sm:h-[340px] rounded-2xl overflow-hidden shadow-xl border border-brand-sage/30 relative cursor-pointer group/img block"
+                      className="w-full lg:w-[480px] rounded-2xl overflow-hidden shadow-xl border border-brand-sage/30 relative cursor-pointer group/img block bg-[#0A2E22]"
                     >
                       <Image
                         src={study.featuredImage}
                         alt={study.title}
-                        fill
-                        className="object-cover transition-transform duration-700 ease-out group-hover/img:scale-105"
+                        width={1200}
+                        height={675}
+                        className="w-full h-auto object-contain transition-transform duration-700 ease-out group-hover/img:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-brand-forest/80 via-transparent to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-end p-6">
                         <span className="text-white text-xs font-bold uppercase tracking-wider">
@@ -89,7 +90,7 @@ export function PortfolioSection() {
                   ) : (
                     <Link
                       href={`/work/${study.slug}`}
-                      className={`w-full lg:w-[480px] h-[300px] sm:h-[340px] rounded-2xl bg-gradient-to-br ${study.gradient} p-8 flex flex-col items-center justify-center relative overflow-hidden shadow-xl border border-white/20 group/card hover:scale-[1.01] transition-transform duration-500 block`}
+                      className={`w-full lg:w-[480px] h-[220px] sm:h-[300px] lg:h-[340px] rounded-2xl bg-gradient-to-br ${study.gradient} p-8 flex flex-col items-center justify-center relative overflow-hidden shadow-xl border border-white/20 group/card hover:scale-[1.01] transition-transform duration-500 block`}
                     >
                       {/* Ambient Glow */}
                       <div className="absolute inset-0 bg-white/5 backdrop-blur-[2px]" />
