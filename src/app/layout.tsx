@@ -39,8 +39,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${manrope.variable} scroll-smooth`}>
-      <body className="bg-brand-cream text-brand-charcoal font-body antialiased min-h-screen selection:bg-brand-sage selection:text-brand-forest">
+    <html lang="en" className={`${playfair.variable} ${manrope.variable} scroll-smooth`} suppressHydrationWarning>
+      <body className="bg-brand-cream text-brand-charcoal font-body antialiased min-h-screen selection:bg-brand-sage selection:text-brand-forest" suppressHydrationWarning>
         {children}
       </body>
     </html>

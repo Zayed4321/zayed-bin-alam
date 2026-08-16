@@ -25,7 +25,7 @@ export function TestimonialsSection() {
       role: "Meta Ads & GTM Setup",
       rating: 5,
       tags: ["Reliable", "Meta Tag Optimization", "Pixel Audit"],
-      image: "/Crave-Portfolio.png",
+      image: "/Happy_man.jpg",
     },
     {
       quote:
